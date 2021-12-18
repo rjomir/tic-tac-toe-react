@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import useTickTackToe from "./hooks/useTicTacToe";
+import Board from "./pages/Board";
+import Start from "./pages/Start";
+import {GAME_STATUS} from "./util";
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
+const App = () => {
+    const game = useTickTackToe();
+    return (
+        <div className="App">
+            {game.status === GAME_STATUS.CREATED && <Start handleStart={game.handleStart}/>}
+            {game.status !== GAME_STATUS.CREATED && (
+                <Board board={game.board} handleClick={game.handleClick} status={game.status}
+                       winner={game.winner}
+                       currentPlayer={game.currentPlayer}
+                       restart={game.handleRestart}/>
+            )}
+        </div>
+    );
+};
 export default App;

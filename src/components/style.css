@@ -1,0 +1,14 @@
+.square {
+    border: 1px solid black;
+    height: calc(100vh / 3 - 80px);
+    font-size: calc(100vh / 3 - 100px);
+    line-height: calc(100vh / 3 - 100px);
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .square {
+        font-size: calc(100vw / 3 - 20px);
+        line-height: calc(100vw / 3 - 20px);
+    }
+}
